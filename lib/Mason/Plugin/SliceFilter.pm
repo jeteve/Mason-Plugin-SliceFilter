@@ -30,11 +30,6 @@ matches, ready to be embedded in your page in ajax for instance.
    </p>
   % }}
 
-  % $.Slice( slice_id => 'myslice' , can_skip => 1 ){{
-    <p>Same as above except nested slices wont be reachable</p>
-    <p>This is an optimisation when you know you haven't got any nested slices</p>
-  % }}
-
   % $.Slice( slice_id => 'myslice' , slice_param => 'myparam' ){{
     <p>Same thing but with controlable slice param.</p>
   % }}

@@ -19,9 +19,9 @@ WriteMakefile(
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Mason-Plugin-SliceFilter-*' },
-    # META_MERGE => {
-    #                resources => {
-    #                              repository => '',
-    #                             },
-    # },
+    META_MERGE => {
+                   resources => {
+                                 repository => 'https://github.com/jeteve/Mason-Plugin-SliceFilter',
+                                },
+    },
 );

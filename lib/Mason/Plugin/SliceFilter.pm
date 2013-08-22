@@ -12,6 +12,10 @@ Mason::Plugin::SliceFilter - Only output slices of your content optionally.
 
 Version 0.01
 
+=head1 SYNOPSIS
+
+See L<Mason> 'plugins'. Once this plugin included, you can use the following filter:
+
 =head1 FILTER
 
 =over

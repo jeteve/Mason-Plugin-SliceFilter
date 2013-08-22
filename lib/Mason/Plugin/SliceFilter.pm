@@ -1,53 +1,46 @@
 package Mason::Plugin::SliceFilter;
+use Moose;
+with 'Mason::Plugin';
 
-use 5.006;
-use strict;
-use warnings;
+our $VERSION = '0.01';
 
 =head1 NAME
 
-Mason::Plugin::SliceFilter - The great new Mason::Plugin::SliceFilter!
+Mason::Plugin::SliceFilter - Only output slices of your content optionally.
 
 =head1 VERSION
 
 Version 0.01
 
-=cut
+=head1 FILTER
 
-our $VERSION = '0.01';
+=over
+
+=item Slice
+
+Outputs its content untouched in case there's no 'slice' parameter in
+the request.
+
+If there is a slice parameter in the request, output JUST this content if the requested slice
+matches, ready to be embedded in your page in ajax for instance.
+
+  % $.Slice( slice_id => 'myslice' ){{
+   <p>This bit will be output just on its own if you call
+      this page with ?slice=myslice.
+   </p>
+  % }}
+
+  % $.Slice( slice_id => 'myslice' , can_skip => 1 ){{
+    <p>Same as above except nested slices wont be reachable</p>
+    <p>This is an optimisation when you know you haven't got any nested slices</p>
+  % }}
+
+  % $.Slice( slice_id => 'myslice' , slice_param => 'myparam' ){{
+    <p>Same thing but with controlable slice param.</p>
+  % }}
 
 
-=head1 SYNOPSIS
-
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
-
-    use Mason::Plugin::SliceFilter;
-
-    my $foo = Mason::Plugin::SliceFilter->new();
-    ...
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
-
-=head1 SUBROUTINES/METHODS
-
-=head2 function1
-
-=cut
-
-sub function1 {
-}
-
-=head2 function2
-
-=cut
-
-sub function2 {
-}
+=back
 
 =head1 AUTHOR
 

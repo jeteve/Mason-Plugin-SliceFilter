@@ -13,8 +13,15 @@ WriteMakefile(
       : ()),
     PL_FILES            => {},
     PREREQ_PM => {
+        'Mason' => 2.15,
+        'Test::Class::Most' => 0,
         'Test::More' => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Mason-Plugin-SliceFilter-*' },
+    # META_MERGE => {
+    #                resources => {
+    #                              repository => '',
+    #                             },
+    # },
 );

@@ -16,6 +16,14 @@ Version 0.01
 
 See L<Mason> 'plugins'. Once this plugin included, you can use the following filter:
 
+=head1 CATALYST USERS
+
+If you use L<Mason> with L<Catalyst>, it's very likely your mason interpreter is run
+within the context of your stash. So for this plugin to work, you need to transfer
+the slice http parameter to the stash (in your MyApp::WWW::Controller::Root::auto for instance):
+
+  $c->stash()->{slice} = $c->req->param('slice');
+
 =head1 FILTER
 
 =over

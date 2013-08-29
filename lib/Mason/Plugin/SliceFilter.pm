@@ -2,7 +2,7 @@ package Mason::Plugin::SliceFilter;
 use Moose;
 with 'Mason::Plugin';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 NAME
 
@@ -10,7 +10,7 @@ Mason::Plugin::SliceFilter - Only output slices of your content optionally.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 SYNOPSIS
 

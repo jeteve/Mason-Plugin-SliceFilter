@@ -1,6 +1,6 @@
 package Mason::Plugin::SliceFilter::t::CaptureParam;
 use Test::Class::Most parent => 'Mason::Test::Class';
-sub test_slice_filter :Test(3){
+sub test_slice_filter :Test(5){
   my $self = shift;
   $self->setup_interp( plugins => [ '@Default', 'SliceFilter' ] );
 
@@ -24,6 +24,40 @@ SliceB
 % }}
 |,
                     expect => 'SliceA');
+
+## Simple Currying
+  $self->test_comp( src =>
+q|
+% my $MySlice = sub{ my (%args) = @_;  return $.Slice(%args, get_slice => sub{ return 'bslice' } ) };
+% $MySlice->(slice_id => 'aslice' ){{
+SliceA
+% }}
+% $MySlice->(slice_id => 'bslice' ){{
+SliceB
+% }}
+|,
+                    expect => 'SliceB');
+
+## Currying at class level
+  $self->test_comp( src =>
+q|
+<%class>
+  has 'MySlice' => ( default =>
+                     sub{
+                         my $self = shift;
+                         return sub{ my (%args) = @_;
+                                     return $self->Slice(get_slice => sub{ return 'bslice' } , %args );
+                                    };
+                        } );
+</%class>
+% $.MySlice->(slice_id => 'aslice' ){{
+SliceA
+% }}
+% $.MySlice->(slice_id => 'bslice' ){{
+SliceB
+% }}
+|,
+                    expect => 'SliceB');
 
 
 ## Hit the second slice
